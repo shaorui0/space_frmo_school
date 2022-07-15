@@ -44,10 +44,11 @@ class InputProcess():
             # handle data if they need
             
             # create obj
-            combat_obj = combat_resource.Attacker(
+            combat_obj = combat_resource.CombatResource(
                 combat_resource_id=combat_id, # 导弹车号
                 resource_type=1,  # 1类导弹车                               #直属下级id
                 coordinate="", # 当前坐标，规定范围 1000,1000?
+                value = 0.1,
             )
             # push obj to dict
             combat_obj_map[combat_id] = combat_obj
@@ -66,6 +67,7 @@ class InputProcess():
                 enemy_resource_id=enemy_id, # 导弹车号
                 resource_type=1,  # 1类导弹车                               #直属下级id
                 coordinate="", # 当前坐标，规定范围 1000,1000?
+                value = 0.1,
             )
             # push obj to dict
             enemy_obj_map[enemy_id] = enemy_obj
@@ -100,6 +102,19 @@ class InputProcess():
         # 由上面的信息了，怎么进行映射
         # 具体逻辑：
         # 1. 几类导弹有几颗，打击几个敌方
+        
+        combat_num_map = dict() # 每种类型的导弹有几颗
+        combat_type_ids_map = dict() # 每种类型的导弹都是哪些导弹车
+        for k, v in combat_obj_map.items():
+            print(k, v)
+            if k.id not in combat_num_map:
+                combat_num_map[k.carType] = 0
+            combat_num_map[k.carType] += 1
+            
+            if k.carType not in combat_type_ids_map:
+                combat_type_ids_map[k.carType] = list()
+            combat_type_ids_map[k.carType].append(k.id)
+            
         #     - 数据我也有了，那个表，我让王强跟着生成一下 mysql insert
         #         - 敌我双方的两张表
         #             - 坐标
@@ -112,6 +127,20 @@ class InputProcess():
         #         - 这样一查
         #     - 主要是什么？我得写一下处理过程，能从mysql 拿到数据，然后分析出
         # 2. 具体我需要参考几个表，那些表我可以参考那篇论文
+        enemy_type_ids_map = dict() # 每种类型的敌人都是什么id
+        for k, v in enemy_obj_map.items():
+            print(k, v)
+            if k.carType not in enemy_type_ids_map:
+                enemy_type_ids_map[k.carType] = list()
+            enemy_type_ids_map[k.carType].append(k.id)
+        
+        # TODO 概率 + 价值
+        combat_hit_rate_table = get_combat_hit_rate()
+        enemy_hit_rate_table = get_enemy_hit_rate()
+
+        ### 上面是数据准备，然后是计算
+        # 我要能通过迭代求出一个最大值，引入那个布谷鸟算法
+        
         
 
     ################# 渲染 mainView ##################
@@ -133,4 +162,11 @@ class InputProcess():
         
     def add_items_type_3(self):
         pass
-        
+
+
+
+def get_combat_hit_rate():
+    pass
+
+def get_enemy_hit_rate():
+    pass

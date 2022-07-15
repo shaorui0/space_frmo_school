@@ -10,12 +10,13 @@ class EnemyResource(object):
             enemy_resource_id,
             resource_type,                                              #军队资源级别
             coordinate,                                       # 当前坐标
+            value,  # 敌人价值
             ):
         self.enemy_resource_id=enemy_resource_id                                                #军队资源id
         self.resource_type=resource_type                                              #军队资源级别
         self.coordinate=coordinate                                 # 当前坐标
+        self.value=value
 
-    
     
 class enemy_resource(QGraphicsItem):
 

@@ -7,15 +7,24 @@ import math
 
 from enemy_resource import enemy_resource
 
-class car(QGraphicsItem):
-
-    def __init__(self, id, carType, name, belong_id):
+class CombatResource(object):
+    def __init__(self, id, carType, coordinate, value):
         super(car, self).__init__()
         self.id = id  # 车辆唯一标识id
         self.carType = carType  # 车辆类型,限定四种类型 1.Attacker 2.observer 3.communicator 4.commander
-        self.name = name  # 车辆名称
-        self.belong_id = belong_id  # 归属于哪一级military_resource
-        self.coordinate = (0,0)  # 地图坐标,格式x_y
+        self.coordinate = coordinate # (0,0)  # 地图坐标,格式x_y
+        self.value=value
+
+class car(QGraphicsItem):
+
+    def __init__(self, id, carType, coordinate, value):
+        super(car, self).__init__()
+        self.id = id  # 车辆唯一标识id
+        self.carType = carType  # 车辆类型,限定四种类型 1.Attacker 2.observer 3.communicator 4.commander
+        # self.name = name  # 车辆名称
+        # self.belong_id = belong_id  # 归属于哪一级military_resource
+        self.coordinate = coordinate # (0,0)  # 地图坐标,格式x_y
+        self.value=value
 
 class Attacker(car):
     
