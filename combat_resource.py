@@ -13,7 +13,7 @@ class CombatResource(object):
         self.id = id  # 车辆唯一标识id
         self.carType = carType  # 车辆类型,限定四种类型 1.Attacker 2.observer 3.communicator 4.commander
         self.coordinate = coordinate # (0,0)  # 地图坐标,格式x_y
-        self.value=value
+        self.value = value
 
 class car(QGraphicsItem):
 

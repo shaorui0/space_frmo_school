@@ -138,8 +138,19 @@ class InputProcess():
         combat_hit_rate_table = get_combat_hit_rate()
         enemy_hit_rate_table = get_enemy_hit_rate()
 
-        ### 上面是数据准备，然后是计算
+        ############## 计算过程 ########################
         # 我要能通过迭代求出一个最大值，引入那个布谷鸟算法
+        # fitness
+        
+        # cs algorithm
+        
+        
+        ## 最后计算得到一个 solution，是什么意思？ 1-n 如何与 1-m 对应起来
+        
+        # solution 可能是 小数的
+        # 转成整数的 mapping_process
+        
+        
         
         
 

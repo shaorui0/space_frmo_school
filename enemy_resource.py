@@ -17,7 +17,7 @@ class EnemyResource(object):
         self.coordinate=coordinate                                 # 当前坐标
         self.value=value
 
-    
+
 class enemy_resource(QGraphicsItem):
 
     def __init__(self,  timer):
