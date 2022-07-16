@@ -2,22 +2,46 @@ import typing
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import Qt, QRectF, QPointF
 from PyQt5.QtWidgets import QGraphicsItem, QWidget
+from PyQt5.QtGui import QBrush
+
 import math
 
 #敌方单位
-class EnemyResource(object):
+class EnemyResource(QGraphicsItem):
     def __init__(self, 
-            enemy_resource_id,
+            id,
+            name,
             resource_type,                                              #军队资源级别
             coordinate,                                       # 当前坐标
             value,  # 敌人价值
             ):
-        self.enemy_resource_id=enemy_resource_id                                                #军队资源id
+        super(EnemyResource, self).__init__()
+        self.id=id                                                #军队资源id
+        self.name= name
         self.resource_type=resource_type                                              #军队资源级别
         self.coordinate=coordinate                                 # 当前坐标
         self.value=value
+        
+        self._brush = QBrush(Qt.green)
+        
+    def setBasePos(self,x,y):
+        self.setPos(x, y)
 
-    
+    def boundingRect(self) -> QtCore.QRectF:
+        adjust = 0.5
+        w = 15
+        h = 20
+        return QRectF(-200 - adjust, -200 - adjust, 200 + adjust, 200 + adjust)
+
+    def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem', widget: typing.Optional[QWidget] = ...):
+        painter.setBrush(self._brush)
+        painter.drawRect(QRectF(-20.5,-30.5,20.5,30.5))
+        painter.setBrush(Qt.black)
+        painter.drawText(QRectF(-20.5,-30.5,20.5,30.5), self.name)
+
+    def setBrush(self, brush):
+        self._brush = brush
+
 class enemy_resource(QGraphicsItem):
 
     def __init__(self,  timer):

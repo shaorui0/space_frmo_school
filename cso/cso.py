@@ -239,6 +239,7 @@ class CSO:
         print()
         if self.plot:
             self.Fplot()
+        return np.round(self.best.reshape(-1),7).tolist()
         
     def Fplot(self):
 

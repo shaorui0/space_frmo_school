@@ -7,13 +7,37 @@ import math
 
 from enemy_resource import enemy_resource
 
-class CombatResource(object):
-    def __init__(self, id, carType, coordinate, value):
-        super(car, self).__init__()
+class CombatResource(QGraphicsItem):
+    def __init__(self, id, name, resource_type, coordinate, value):
+        super(CombatResource, self).__init__()
         self.id = id  # 车辆唯一标识id
-        self.carType = carType  # 车辆类型,限定四种类型 1.Attacker 2.observer 3.communicator 4.commander
+        self.name= name
+        self.resource_type = resource_type  # 车辆类型,限定四种类型 1.Attacker 2.observer 3.communicator 4.commander
         self.coordinate = coordinate # (0,0)  # 地图坐标,格式x_y
-        self.value=value
+        self.value = value
+        
+        self._brush = QBrush(Qt.yellow)
+        
+    def setBasePos(self,x,y):
+        self.setPos(x, y)
+    
+    #设置单位形状
+    def boundingRect(self) -> QtCore.QRectF:
+        adjust = 0.5
+        w = 20
+        h = 30
+        # return QRectF(-w - adjust, -h - adjust, w + adjust, h + adjust)
+        return QRectF(-200 - adjust, -200 - adjust, 200 + adjust, 200 + adjust)
+
+    #绘制单位
+    def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',widget: typing.Optional[QWidget] = ...):
+        painter.setBrush(self._brush)
+        painter.drawRect(QRectF(-20.5,-30.5,20.5,30.5))
+        painter.setBrush(Qt.black)
+        painter.drawText(QRectF(-20.5,-30.5,20.5,30.5), self.name)
+
+    def setBrush(self, brush):
+        self._brush = brush
 
 class car(QGraphicsItem):
 
