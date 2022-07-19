@@ -24,17 +24,16 @@ class CombatResource(QGraphicsItem):
     #设置单位形状
     def boundingRect(self) -> QtCore.QRectF:
         adjust = 0.5
-        w = 20
+        w = 60
         h = 30
-        # return QRectF(-w - adjust, -h - adjust, w + adjust, h + adjust)
         return QRectF(-200 - adjust, -200 - adjust, 200 + adjust, 200 + adjust)
 
     #绘制单位
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',widget: typing.Optional[QWidget] = ...):
         painter.setBrush(self._brush)
-        painter.drawRect(QRectF(-20.5,-30.5,20.5,30.5))
+        painter.drawRect(QRectF(-60.5,-30.5,60.5,30.5))
         painter.setBrush(Qt.black)
-        painter.drawText(QRectF(-20.5,-30.5,20.5,30.5), self.name)
+        painter.drawText(QRectF(-60.5,-30.5,60.5,30.5), self.name)
 
     def setBrush(self, brush):
         self._brush = brush
@@ -132,14 +131,14 @@ class communicator(car,QGraphicsItem):
     
     def show_level(self):
         pass
-    # show_level
-    #         - desc: 展示层级关系
-    #         - output:
-    #             - TreeNode<Car> root    //返回生成关系树的根节点 
-    #             class TreeNode {
-    #                 Car curCar;
-    #                 TreeNode<Car>  childCars;
-    #             }
+        # show_level
+        #         - desc: 展示层级关系
+        #         - output:
+        #             - TreeNode<Car> root    //返回生成关系树的根节点 
+        #             class TreeNode {
+        #                 Car curCar;
+        #                 TreeNode<Car>  childCars;
+        #             }
 
     def can_connect(self,id):
         limit_dist = 10000                      # 限制距离
@@ -208,27 +207,3 @@ class missile(QGraphicsItem):
         if dis > l:
             dis = l
         self.setPos(self.mapToParent(dis/l*p))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

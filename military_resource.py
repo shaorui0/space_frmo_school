@@ -135,37 +135,37 @@ class MilitaryResource(object):
 # state:doing
 # '''
 
-# class Army: 
-#     military_resource_id=0                                                #军队资源id
-#     resource_type=0                                              #军队资源级别
-#     commander_name ='hello'                             #军队长官姓名
-#     superior =12                                        #直属上级id
-#     subordinates=[]                                    #直属下级id
-#     coordinate=[]                                       # 当前坐标
-#     status = threadQueue                                  # 当前状态
-#     combatSource_ids=[]                                  #该资源单位的作战资源
+class Army: 
+    military_resource_id=0                                                #军队资源id
+    resource_type=0                                              #军队资源级别
+    commander_name ='hello'                             #军队长官姓名
+    superior =12                                        #直属上级id
+    subordinates=[]                                    #直属下级id
+    coordinate=[]                                       # 当前坐标
+    status = threadQueue                                  # 当前状态
+    combatSource_ids=[]                                  #该资源单位的作战资源
 
-#     idMapIP={'123':('127.0.0.1',1236)}                  #需要一个用来存储个个单位通信ip和port的dict 此映射表用于 命令和数据收发时 通信
-#     def __init__(self,commuPort=1234):
-#         self.commu=Communication(port=commuPort)
-#     def sendCommand(self,id,command='hello'): #命令暂时定为str'
-#         addr=self.idMapIP['123']
-#         self.commu.sendBuffer(addr[0],addr[1],command)        
-#         pass
-#     def receiveCommand(self,):                          #从命令缓存中读取一条指令 {‘addr':addr,'data':command}
-#         self.commu.lock.acquire()
-#         data=self.commu.commandQueue.pop(0)     
-#         self.commu.lock.release()
-#         return data    
-#         pass
-#     def getSource(self,):
-#         return self.combatSource.getSource
-#         pass
-#     def getSuperior(self,):
-#         # return object
-#         pass
-#     def getSubordinates(self,):
-#         # return list(object)
-#         pass
-#     def logInsert(self,):
-#         pass
+    idMapIP={'123':('127.0.0.1',1236)}                  #需要一个用来存储个个单位通信ip和port的dict 此映射表用于 命令和数据收发时 通信
+    def __init__(self,commuPort=1234):
+        self.commu=Communication(port=commuPort)
+    def sendCommand(self,id,command='hello'): #命令暂时定为str'
+        addr=self.idMapIP['123']
+        self.commu.sendBuffer(addr[0],addr[1],command)        
+        pass
+    def receiveCommand(self,):                          #从命令缓存中读取一条指令 {‘addr':addr,'data':command}
+        self.commu.lock.acquire()
+        data=self.commu.commandQueue.pop(0)     
+        self.commu.lock.release()
+        return data    
+        pass
+    def getSource(self,):
+        return self.combatSource.getSource
+        pass
+    def getSuperior(self,):
+        # return object
+        pass
+    def getSubordinates(self,):
+        # return list(object)
+        pass
+    def logInsert(self,):
+        pass

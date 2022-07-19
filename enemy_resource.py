@@ -29,15 +29,15 @@ class EnemyResource(QGraphicsItem):
 
     def boundingRect(self) -> QtCore.QRectF:
         adjust = 0.5
-        w = 15
+        w = 60
         h = 20
         return QRectF(-200 - adjust, -200 - adjust, 200 + adjust, 200 + adjust)
 
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem', widget: typing.Optional[QWidget] = ...):
         painter.setBrush(self._brush)
-        painter.drawRect(QRectF(-20.5,-30.5,20.5,30.5))
+        painter.drawRect(QRectF(-60.5,-30.5,60.5,30.5))
         painter.setBrush(Qt.black)
-        painter.drawText(QRectF(-20.5,-30.5,20.5,30.5), self.name)
+        painter.drawText(QRectF(-60.5,-30.5,60.5,30.5), self.name)
 
     def setBrush(self, brush):
         self._brush = brush
@@ -107,18 +107,4 @@ class enemy_resource_1(enemy_resource):
         x = lens * math.cos(ar)  - lens * math.cos(oldar) + self.pos().x()
         y = lens * math.sin(ar)  - lens * math.sin(oldar) + self.pos().y()
         return x, y
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
