@@ -59,6 +59,7 @@ class MainWindow(QMainWindow):
         output, combat_map, enemy_map, final_hit_map = handler.main_process()
         
         print("正在输出结果......")
+        print("output": output)
         self.insertOutputText(output)
 
         print("正在渲染 UI......")
